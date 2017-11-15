@@ -1,0 +1,115 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "/usr/include",
+                "/usr/local/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "/usr/include",
+                    "/usr/local/include",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ]
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/include",
+                "/usr/include/c++/5",
+                "/usr/include/linux",
+                "/usr/include/x86_64-linux-gnu",
+                "/usr/include/x86_64-linux-gnu/c++/5",
+                "/usr/lib/gcc/x86_64-linux-gnu/5/include",
+                "/usr/lib/openmpi/include",
+                "/usr/lib/petscdir/3.4.2/include",
+                "/usr/local/include",
+                "${workspaceRoot}",
+                "${workspaceRoot}/cxxtest",
+                "${workspaceRoot}/global/src",
+                "${workspaceRoot}/global/src/checkpointing",
+                "${workspaceRoot}/global/src/fortests",
+                "${workspaceRoot}/global/src/parallel",
+                "${workspaceRoot}/global/src/timing",
+                "${workspaceRoot}/heart/build/debug_warn/src/io",
+                "${workspaceRoot}/heart/build/debug_warn/src/odes/cellml",
+                "${workspaceRoot}/heart/src/io",
+                "${workspaceRoot}/heart/src/odes",
+                "${workspaceRoot}/heart/src/odes/ionicmodels",
+                "${workspaceRoot}/heart/src/problem",
+                "${workspaceRoot}/heart/src/problem/cell_factories",
+                "${workspaceRoot}/heart/src/problem/conductivity_tensors",
+                "${workspaceRoot}/heart/src/solver/electrics",
+                "${workspaceRoot}/heart/src/stimulus",
+                "${workspaceRoot}/heart/src/stimulus/tissue_electrodes",
+                "${workspaceRoot}/heart/src/tissue",
+                "${workspaceRoot}/io/src/common",
+                "${workspaceRoot}/io/src/reader",
+                "${workspaceRoot}/io/src/writer",
+                "${workspaceRoot}/linalg/src",
+                "${workspaceRoot}/mesh/src/common",
+                "${workspaceRoot}/mesh/src/reader",
+                "${workspaceRoot}/mesh/src/utilities",
+                "${workspaceRoot}/mesh/src/writer",
+                "${workspaceRoot}/ode/src/common",
+                "${workspaceRoot}/ode/src/solver",
+                "${workspaceRoot}/pde/src/common",
+                "${workspaceRoot}/pde/src/postprocessing",
+                "${workspaceRoot}/pde/src/solver",
+                "${workspaceRoot}/projects/compbiolab_chaste/src/fortests",
+                "${workspaceRoot}/projects/compbiolab_chaste/src/heart_modified/problem",
+                "${workspaceRoot}/projects/compbiolab_chaste/src/heart_modified/solver/extended_bidomain",
+                "${workspaceRoot}/projects/compbiolab_chaste/src/heart_modified/tissue",
+                "${workspaceRoot}/projects/compbiolab_chaste/src/sip",
+                "${workspaceRoot}/projects/compbiolab_chaste/src/sip/fortests"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "/usr/include",
+                    "/usr/include/c++/5",
+                    "/usr/include/x86_64-linux-gnu",
+                    "/usr/include/x86_64-linux-gnu/c++/5",
+                    "/usr/local/include",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "/usr/include",
+                    "/usr/local/include",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 3
+}
