@@ -51,6 +51,7 @@
                 "${workspaceRoot}/heart/src/problem/cell_factories",
                 "${workspaceRoot}/heart/src/problem/conductivity_tensors",
                 "${workspaceRoot}/heart/src/solver/electrics",
+                "${workspaceRoot}/heart/src/solver/electrics/bidomain",
                 "${workspaceRoot}/heart/src/stimulus",
                 "${workspaceRoot}/heart/src/stimulus/tissue_electrodes",
                 "${workspaceRoot}/heart/src/tissue",
@@ -72,7 +73,8 @@
                 "${workspaceRoot}/projects/compbiolab_chaste/src/heart_modified/solver/extended_bidomain",
                 "${workspaceRoot}/projects/compbiolab_chaste/src/heart_modified/tissue",
                 "${workspaceRoot}/projects/compbiolab_chaste/src/sip",
-                "${workspaceRoot}/projects/compbiolab_chaste/src/sip/fortests"
+                "${workspaceRoot}/projects/compbiolab_chaste/src/sip/fortests",
+                "${workspaceRoot}/unfit/include"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
