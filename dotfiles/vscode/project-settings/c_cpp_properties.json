@@ -42,8 +42,6 @@
                 "${workspaceRoot}/global/src/fortests",
                 "${workspaceRoot}/global/src/parallel",
                 "${workspaceRoot}/global/src/timing",
-                "${workspaceRoot}/heart/build/debug_warn/src/io",
-                "${workspaceRoot}/heart/build/debug_warn/src/odes/cellml",
                 "${workspaceRoot}/heart/src/io",
                 "${workspaceRoot}/heart/src/odes",
                 "${workspaceRoot}/heart/src/odes/ionicmodels",
@@ -51,7 +49,6 @@
                 "${workspaceRoot}/heart/src/problem/cell_factories",
                 "${workspaceRoot}/heart/src/problem/conductivity_tensors",
                 "${workspaceRoot}/heart/src/solver/electrics",
-                "${workspaceRoot}/heart/src/solver/electrics/bidomain",
                 "${workspaceRoot}/heart/src/stimulus",
                 "${workspaceRoot}/heart/src/stimulus/tissue_electrodes",
                 "${workspaceRoot}/heart/src/tissue",
@@ -74,18 +71,30 @@
                 "${workspaceRoot}/projects/compbiolab_chaste/src/heart_modified/tissue",
                 "${workspaceRoot}/projects/compbiolab_chaste/src/sip",
                 "${workspaceRoot}/projects/compbiolab_chaste/src/sip/fortests",
-                "${workspaceRoot}/unfit/include"
+                "${workspaceRoot}/projects/yier/src/fortests",
+                "${workspaceRoot}/projects/yier/src/heart_modified/problem",
+                "${workspaceRoot}/projects/yier/src/heart_modified/solver/extended_bidomain",
+                "${workspaceRoot}/projects/yier/src/heart_modified/tissue",
+                "${workspaceRoot}/projects/yier/src/sip",
+                "${workspaceRoot}/projects/yier/src/sip/fortests",
+                "${workspaceRoot}/unfit/include",
+                "${workspaceRoot}_build/heart/src/io",
+                "${workspaceRoot}_build/heart/src/odes/cellml"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
             "browse": {
                 "path": [
-                    "/usr/include",
-                    "/usr/include/c++/5",
-                    "/usr/include/x86_64-linux-gnu",
-                    "/usr/include/x86_64-linux-gnu/c++/5",
+                    "/usr/include/c++/4.8",
+                    "/usr/include/x86_64-linux-gnu/c++/4.8",
+                    "/usr/include/c++/4.8/backward",
+                    "/usr/lib/gcc/x86_64-linux-gnu/4.8/include",
                     "/usr/local/include",
-                    "${workspaceRoot}"
+                    "/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed",
+                    "/usr/include/x86_64-linux-gnu",
+                    "/usr/include",
+                    "${workspaceRoot}",
+                    "${workspaceRoot}/cxxtest"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
@@ -104,8 +113,7 @@
             "intelliSenseMode": "msvc-x64",
             "browse": {
                 "path": [
-                    "/usr/include",
-                    "/usr/local/include",
+                    "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
