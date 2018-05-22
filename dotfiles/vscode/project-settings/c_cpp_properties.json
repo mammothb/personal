@@ -78,8 +78,10 @@
                 "${workspaceRoot}/projects/yier/src/sip",
                 "${workspaceRoot}/projects/yier/src/sip/fortests",
                 "${workspaceRoot}/unfit/include",
-                "${workspaceRoot}_build/heart/src/io",
-                "${workspaceRoot}_build/heart/src/odes/cellml"
+                "${workspaceRoot}_build/Debug/heart/src/io",
+                "${workspaceRoot}_build/Debug/heart/src/odes/cellml",
+                "${workspaceRoot}_build/Release/heart/src/io",
+                "${workspaceRoot}_build/Release/heart/src/odes/cellml"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -98,7 +100,10 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++14"
         },
         {
             "name": "Win32",
@@ -121,5 +126,5 @@
             }
         }
     ],
-    "version": 3
+    "version": 4
 }

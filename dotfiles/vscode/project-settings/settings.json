@@ -1,5 +1,4 @@
 {
-  "python.pythonPath": "/usr/bin/python3.6",
   "files.associations": {
     "*.ipp": "cpp",
     "*.tcc": "cpp",
@@ -48,5 +47,7 @@
     "*.ixx": "cpp",
     "algorithm": "cpp",
     "bitset": "cpp"
-  }
+  },
+  "cpplint.repository": "${workspaceFolder}/projects/compbiolab_chaste",
+  "cpplint.root": "${workspaceFolder}/projects/compbiolab_chaste"
 }
