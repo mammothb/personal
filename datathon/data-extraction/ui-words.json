@@ -1,0 +1,6 @@
+[
+    { "label" : "data"      , "wordname" : "data"        },
+    { "label" : "status"    , "wordname" : "status"      },
+    { "label" : "save"      , "wordname" : "save-result" },
+    { "label" : "stop"      , "wordname" : "stop"        }
+]
