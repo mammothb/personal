@@ -7,6 +7,7 @@
 
 \ Your extraction script to run.  
 include multicoldata.m
+\ include data.m
 \ include counts.m
 
 \ Submits the job for processing. 

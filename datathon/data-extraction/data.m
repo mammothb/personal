@@ -14,11 +14,31 @@ job: P001/lab-3
 \ Where to save the results. 
 result: data.csv
 
+: ref ; 0 ,
+
+: counter
+	['] ref @ 
+	1 + dup
+	['] ref ! 
+\ 	. 
+;
+
+: replace_null ( n n -- n ) { a b }
+\    b null? -> 1 exit |. b
+  counter
+\   b
+; 
+
+: avg ( n n -- n ) 
+   dup null? -> drop exit |. 
+   +. 2 /. 
+;
 
 \ Extracts all data from $dengue-sg before present and 
 \ averages them. 
 : script
-    $dengue-sg
+    $temperature-changi $rainfall-admiralty-west ['] replace_null fuse
+\     $dengue-sg
 \     $temperature-admiralty
 \     $temperature-ang-mo-kio
 \     $temperature-boon-lay-east
@@ -102,5 +122,3 @@ result: data.csv
 \     $rainfall-whampoa
 \     $rainfall-yishun
 ;
-
-
