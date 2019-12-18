@@ -6,7 +6,9 @@
 \
 
 \ Your extraction script to run.  
-include multicoldata.m
+\ include multicoldata.m
+\ include multicoldataall.m
+include multicolspacial.m
 \ include data.m
 \ include counts.m
 
