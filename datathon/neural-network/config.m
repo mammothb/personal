@@ -6,12 +6,12 @@
 \
 
 \ Sizes for the Neural Network
-{{ 32 128 512 1024 }} := nn-size
+{{ 32 64 128 }} := nn-size
 
 \ The number of inputs 
 \ You definitely need to amend this depending on 
 \ the number of features you use.
-30 := input-size
+{{ 56 61 66 }} := input-size
 
 \ Max iterations for solver. 
 10000 := iters
@@ -21,5 +21,6 @@
 \ SGD is Stochasic Gradient Descent. (can be better in some cases) 
 "Adam" := solver-type
 
-5 repeats
+10 repeats
+
 

@@ -7,6 +7,14 @@
 
 use timeseries
 
+\ : perceptron ( n -- layer )
+\     innerproduct relu
+\ ; 
+\ 
+\ : perceptrons ( l seq -- layer )
+\     ['] perceptron reduce
+\ ; 
+
 : shrink ( n -- n )
     2 * 3 /
 ; 
@@ -26,24 +34,36 @@ use timeseries
     }} perceptron
 ; 
 
+: quad-layer-network ( l -- l )
+    {{
+        ${nn-size}
+        ${nn-size} shrink
+        ${nn-size} shrink shrink
+        ${nn-size} shrink shrink shrink
+    }} perceptron
+; 
+
 : network ( l -- l )
-   named temps 
-     triple-layer-network
-     1 innerproduct
-   end-named
+    named temps 
+        triple-layer-network
+        1 innerproduct
+    end-named
 ; 
 
 : train ( -- l )
-
   4 5 ... ${input-size} take { input-indices }
   "dengue/train/nn" csv train
     input-indices := xs
     3 := y0
     1 := y
+\     6 := y0
+\     4 := y
   "dengue/test/nn" csv test
     input-indices := xs
     3 := y0
     2 := y
+\     6 := y0
+\     5 := y
     
    network '$y0 + 
    '$y euclidean >> loss
@@ -54,7 +74,7 @@ use timeseries
   4 5 ... ${input-size} take { input-indices }
   "${deploy-source}" csv
     input-indices := xs
-    2 := y0
+    3 := y0
     1 .batch_size
     false .load_once
  
@@ -68,5 +88,3 @@ use timeseries
   %s type "${solver-type}"
   %s early_stop 25 20 
 ; 
-
-

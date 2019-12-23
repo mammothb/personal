@@ -15,7 +15,7 @@ project: dengue
     "train.csv" preprocess
     "train-preprocessed.csv" "dengue/train/nn" csv>data
     "test-preprocessed.csv"  "dengue/test/nn"  csv>data
-;
+; 
 
 network: network.m
 
@@ -24,21 +24,23 @@ network: network.m
 \     best-config@ test-loss  . cr
     1 nconfigs plot-losses cr
     all-config
-;
+; 
 
 : evaluate
-    {{ best-config@ }} evaluate ;
+    {{ best-config@ }} evaluate
+; 
 
 : plot-predictions
     best-config@ { n }
     n plot-train-predictions cr
     n plot-test-predictions cr
     n plot-scatter cr
-    n 20 plot-lags cr 
-;
+    n 104 plot-lags cr 
+; 
 
 \ <model name> <config#> deploy-model
 \ Eg. "my-model" 1 deploy-model
 : deploy-model 
   "p001-nn" best-config@ deploy-model
 ;
+
