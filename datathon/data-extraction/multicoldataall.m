@@ -8,6 +8,11 @@ result: multicolall.csv
   $dengue-sg db 365 days linear interpolate
 ; 
 
+\ Convert rainfall to boolean
+: rainy_day ( # -- # )
+    [: 0 > -> 1 exit | 0 ;] apply
+; 
+
 : max_consecutive ( seq -- n )
 	0 REF { count }
 	[: 
@@ -302,68 +307,68 @@ result: multicolall.csv
         $rainfall-whampoa minimum_all
         $rainfall-yishun minimum_all
         
-        $rainfall-admiralty max_consecutive_all
-        $rainfall-admiralty-west max_consecutive_all
-        $rainfall-ang-mo-kio max_consecutive_all
-        $rainfall-boon-lay-east max_consecutive_all
-        $rainfall-boon-lay-west max_consecutive_all
-        $rainfall-botanic-garden max_consecutive_all
-        $rainfall-buangkok max_consecutive_all
-        $rainfall-bukit-panjang max_consecutive_all
-        $rainfall-bukit-timah max_consecutive_all
-        $rainfall-buona-vista max_consecutive_all
-        $rainfall-chai-chee max_consecutive_all
-        $rainfall-changi max_consecutive_all
-        $rainfall-choa-chu-kang-central max_consecutive_all
-        $rainfall-choa-chu-kang-south max_consecutive_all
-        $rainfall-choa-chu-kang-west max_consecutive_all
-        $rainfall-clementi max_consecutive_all
-        $rainfall-dhoby-ghaut max_consecutive_all
-        $rainfall-east-coast-parkway max_consecutive_all
-        $rainfall-jurong-east max_consecutive_all
-        $rainfall-jurong-north max_consecutive_all
-        $rainfall-jurong-island max_consecutive_all
-        $rainfall-jurong-pier max_consecutive_all
-        $rainfall-kampong-bahru max_consecutive_all
-        $rainfall-kent-ridge max_consecutive_all
-        $rainfall-khatib max_consecutive_all
-        $rainfall-kranji-reservoir max_consecutive_all
-        $rainfall-lim-chu-kang max_consecutive_all
-        $rainfall-lower-peirce-reservoir max_consecutive_all
-        $rainfall-macritchie-reservoir max_consecutive_all
-        $rainfall-mandai max_consecutive_all
-        $rainfall-marina-barrage max_consecutive_all
-        $rainfall-marine-parade max_consecutive_all
-        $rainfall-newton max_consecutive_all
-        $rainfall-nicoll-highway max_consecutive_all
-        $rainfall-pasir-panjang max_consecutive_all
-        $rainfall-pasir-ris-central max_consecutive_all
-        $rainfall-pasir-ris-west max_consecutive_all
-        $rainfall-paya-lebar max_consecutive_all
-        $rainfall-pulau-ubin max_consecutive_all
-        $rainfall-punggol max_consecutive_all
-        $rainfall-queenstown max_consecutive_all
-        $rainfall-seletar max_consecutive_all
-        $rainfall-semakau-island max_consecutive_all
-        $rainfall-sembawang max_consecutive_all
-        $rainfall-sentosa-island max_consecutive_all
-        $rainfall-serangoon max_consecutive_all
-        $rainfall-serangoon-north max_consecutive_all
-        $rainfall-simei max_consecutive_all
-        $rainfall-somerset-road max_consecutive_all
-        $rainfall-tai-seng max_consecutive_all
-        $rainfall-tanjong-katong max_consecutive_all
-        $rainfall-tanjong-pagar max_consecutive_all
-        $rainfall-tengah max_consecutive_all
-        $rainfall-toa-payoh max_consecutive_all
-        $rainfall-tuas max_consecutive_all
-        $rainfall-tuas-south max_consecutive_all
-        $rainfall-tuas-west max_consecutive_all
-        $rainfall-ulu-pandan max_consecutive_all
-        $rainfall-upper-peirce-reservoir max_consecutive_all
-        $rainfall-upper-thomson max_consecutive_all
-        $rainfall-whampoa max_consecutive_all
-        $rainfall-yishun max_consecutive_all
+        $rainfall-admiralty rainy_day max_consecutive_all
+        $rainfall-admiralty-west rainy_day max_consecutive_all
+        $rainfall-ang-mo-kio rainy_day max_consecutive_all
+        $rainfall-boon-lay-east rainy_day max_consecutive_all
+        $rainfall-boon-lay-west rainy_day max_consecutive_all
+        $rainfall-botanic-garden rainy_day max_consecutive_all
+        $rainfall-buangkok rainy_day max_consecutive_all
+        $rainfall-bukit-panjang rainy_day max_consecutive_all
+        $rainfall-bukit-timah rainy_day max_consecutive_all
+        $rainfall-buona-vista rainy_day max_consecutive_all
+        $rainfall-chai-chee rainy_day max_consecutive_all
+        $rainfall-changi rainy_day max_consecutive_all
+        $rainfall-choa-chu-kang-central rainy_day max_consecutive_all
+        $rainfall-choa-chu-kang-south rainy_day max_consecutive_all
+        $rainfall-choa-chu-kang-west rainy_day max_consecutive_all
+        $rainfall-clementi rainy_day max_consecutive_all
+        $rainfall-dhoby-ghaut rainy_day max_consecutive_all
+        $rainfall-east-coast-parkway rainy_day max_consecutive_all
+        $rainfall-jurong-east rainy_day max_consecutive_all
+        $rainfall-jurong-north rainy_day max_consecutive_all
+        $rainfall-jurong-island rainy_day max_consecutive_all
+        $rainfall-jurong-pier rainy_day max_consecutive_all
+        $rainfall-kampong-bahru rainy_day max_consecutive_all
+        $rainfall-kent-ridge rainy_day max_consecutive_all
+        $rainfall-khatib rainy_day max_consecutive_all
+        $rainfall-kranji-reservoir rainy_day max_consecutive_all
+        $rainfall-lim-chu-kang rainy_day max_consecutive_all
+        $rainfall-lower-peirce-reservoir rainy_day max_consecutive_all
+        $rainfall-macritchie-reservoir rainy_day max_consecutive_all
+        $rainfall-mandai rainy_day max_consecutive_all
+        $rainfall-marina-barrage rainy_day max_consecutive_all
+        $rainfall-marine-parade rainy_day max_consecutive_all
+        $rainfall-newton rainy_day max_consecutive_all
+        $rainfall-nicoll-highway rainy_day max_consecutive_all
+        $rainfall-pasir-panjang rainy_day max_consecutive_all
+        $rainfall-pasir-ris-central rainy_day max_consecutive_all
+        $rainfall-pasir-ris-west rainy_day max_consecutive_all
+        $rainfall-paya-lebar rainy_day max_consecutive_all
+        $rainfall-pulau-ubin rainy_day max_consecutive_all
+        $rainfall-punggol rainy_day max_consecutive_all
+        $rainfall-queenstown rainy_day max_consecutive_all
+        $rainfall-seletar rainy_day max_consecutive_all
+        $rainfall-semakau-island rainy_day max_consecutive_all
+        $rainfall-sembawang rainy_day max_consecutive_all
+        $rainfall-sentosa-island rainy_day max_consecutive_all
+        $rainfall-serangoon rainy_day max_consecutive_all
+        $rainfall-serangoon-north rainy_day max_consecutive_all
+        $rainfall-simei rainy_day max_consecutive_all
+        $rainfall-somerset-road rainy_day max_consecutive_all
+        $rainfall-tai-seng rainy_day max_consecutive_all
+        $rainfall-tanjong-katong rainy_day max_consecutive_all
+        $rainfall-tanjong-pagar rainy_day max_consecutive_all
+        $rainfall-tengah rainy_day max_consecutive_all
+        $rainfall-toa-payoh rainy_day max_consecutive_all
+        $rainfall-tuas rainy_day max_consecutive_all
+        $rainfall-tuas-south rainy_day max_consecutive_all
+        $rainfall-tuas-west rainy_day max_consecutive_all
+        $rainfall-ulu-pandan rainy_day max_consecutive_all
+        $rainfall-upper-peirce-reservoir rainy_day max_consecutive_all
+        $rainfall-upper-thomson rainy_day max_consecutive_all
+        $rainfall-whampoa rainy_day max_consecutive_all
+        $rainfall-yishun rainy_day max_consecutive_all
         
         $population-sg upsample_year_to_week
     }} "-" >csv 
