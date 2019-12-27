@@ -36,12 +36,11 @@
 \ require a Fixed number of inputs (features). 
 \
 
+: get-gradient ( n n n -- n ) { mean sd n }
+    mean sd 2 *. +. mean sd 2 *. -. -. n /.
+; 
+
 : transform
-      
-    \ You need to add your features here. 
-    \ The example below just extracts mean and sd
-    \ as 2 features. 
-    
 \     A:8:0 MEAN   \ dengue-sg-normalized
 \     A:8          \ 8-week ahead forecast.
 \     A:0:-8 MEAN  \ y0
@@ -49,11 +48,6 @@
     B:8:0 MEAN   \ dengue-sg-log
     B:8          \ 8-week ahead forecast.
     B:0:-8 MEAN  \ y0
-
-\     B:-4:-12 MEAN  \ y0
-
-    \ ========== population-sg-normalized ==========
-    2:0:-8 MEAN
 
     \ ========== temperature-avg ==========
 \     3:0:-8 MEAN
@@ -68,37 +62,31 @@
     5:-5:-8 MEAN
     6:-5:-8 MEAN
     8:-5:-8 MEAN
-    
+
     3:-9:-12 MEAN
     4:-9:-12 MEAN
     5:-9:-12 MEAN
     6:-9:-12 MEAN
     8:-9:-12 MEAN
-    
+
     3:-13:-16 MEAN
     4:-13:-16 MEAN
     5:-13:-16 MEAN
     6:-13:-16 MEAN
     8:-13:-16 MEAN
-    
+
     3:-17:-20 MEAN
     4:-17:-20 MEAN
     5:-17:-20 MEAN
     6:-17:-20 MEAN
     8:-17:-20 MEAN
     
+    \ ========== temperature-avg flags ==========
     3:-17:-20 MEAN 27.8 < IF 1 ELSE 0 THEN
     4:-17:-20 MEAN 27.8 < IF 1 ELSE 0 THEN
     5:-17:-20 MEAN 27.8 < IF 1 ELSE 0 THEN
     6:-17:-20 MEAN 27.8 < IF 1 ELSE 0 THEN
     8:-17:-20 MEAN 27.8 < IF 1 ELSE 0 THEN
-
-\     3:-8:-32 MEAN
-\     4:-8:-32 MEAN
-\     5:-8:-32 MEAN
-\     6:-8:-32 MEAN
-\ \     7:-8:-32 MEAN
-\     8:-8:-32 MEAN
 
     \ ========== temperature-max ==========
 \     9:0:-8 MEAN
@@ -128,7 +116,7 @@
     23:-1:-4 MEAN
     24:-1:-4 MEAN
     25:-1:-4 MEAN
-    
+
     21:-5:-8 MEAN
     22:-5:-8 MEAN
     23:-5:-8 MEAN
@@ -140,66 +128,44 @@
     23:-9:-12 MEAN
     24:-9:-12 MEAN
     25:-9:-12 MEAN
-    
+
     21:-13:-16 MEAN
     22:-13:-16 MEAN
     23:-13:-16 MEAN
     24:-13:-16 MEAN
     25:-13:-16 MEAN
-    
+
     21:-17:-20 MEAN
     22:-17:-20 MEAN
     23:-17:-20 MEAN
     24:-17:-20 MEAN
     25:-17:-20 MEAN
 
-\     21:-13:-16 MEAN 21.4 > IF 1 ELSE 0 THEN
-\     22:-13:-16 MEAN 21.4 > IF 1 ELSE 0 THEN
-\     23:-13:-16 MEAN 21.4 > IF 1 ELSE 0 THEN
-\     24:-13:-16 MEAN 21.4 > IF 1 ELSE 0 THEN
-\     25:-13:-16 MEAN 21.4 > IF 1 ELSE 0 THEN
-    
+    \ ========== rainfall-avg flags ==========
     21:-13:-16 MEAN DUP 10.7 < -> DROP 1 | 21.4 > -> 1 | OTHERWISE 0 |.
     22:-13:-16 MEAN DUP 10.7 < -> DROP 1 | 21.4 > -> 1 | OTHERWISE 0 |.
     23:-13:-16 MEAN DUP 10.7 < -> DROP 1 | 21.4 > -> 1 | OTHERWISE 0 |.
     24:-13:-16 MEAN DUP 10.7 < -> DROP 1 | 21.4 > -> 1 | OTHERWISE 0 |.
     25:-13:-16 MEAN DUP 10.7 < -> DROP 1 | 21.4 > -> 1 | OTHERWISE 0 |.
     
-    21:-9:-12 MEAN DUP 10.7 < -> DROP 1 | 21.4 > -> 1 | OTHERWISE 0 |.
-    22:-9:-12 MEAN DUP 10.7 < -> DROP 1 | 21.4 > -> 1 | OTHERWISE 0 |.
-    23:-9:-12 MEAN DUP 10.7 < -> DROP 1 | 21.4 > -> 1 | OTHERWISE 0 |.
-    24:-9:-12 MEAN DUP 10.7 < -> DROP 1 | 21.4 > -> 1 | OTHERWISE 0 |.
-    25:-9:-12 MEAN DUP 10.7 < -> DROP 1 | 21.4 > -> 1 | OTHERWISE 0 |.
+    \ ========== population-sg-normalized ==========
+    2:-1:-20 MEAN
     
-    21:-5:-8 MEAN 10.7 < IF 1 ELSE 0 THEN
-    22:-5:-8 MEAN 10.7 < IF 1 ELSE 0 THEN
-    23:-5:-8 MEAN 10.7 < IF 1 ELSE 0 THEN
-    24:-5:-8 MEAN 10.7 < IF 1 ELSE 0 THEN
-    25:-5:-8 MEAN 10.7 < IF 1 ELSE 0 THEN
+\     21:-13:-16 MEAN 21.4 > IF 1 ELSE 0 THEN
+\     22:-13:-16 MEAN 21.4 > IF 1 ELSE 0 THEN
+\     23:-13:-16 MEAN 21.4 > IF 1 ELSE 0 THEN
+\     24:-13:-16 MEAN 21.4 > IF 1 ELSE 0 THEN
+\     25:-13:-16 MEAN 21.4 > IF 1 ELSE 0 THEN
 
-\     21:-17:-20 MEAN 21.4 > IF 1 ELSE 0 THEN
-\     22:-17:-20 MEAN 21.4 > IF 1 ELSE 0 THEN
-\     23:-17:-20 MEAN 21.4 > IF 1 ELSE 0 THEN
-\     24:-17:-20 MEAN 21.4 > IF 1 ELSE 0 THEN
-\     25:-17:-20 MEAN 21.4 > IF 1 ELSE 0 THEN
+\     21:-17:-20 MEAN 10.7 > IF 1 ELSE 0 THEN
+\     22:-17:-20 MEAN 10.7 > IF 1 ELSE 0 THEN
+\     23:-17:-20 MEAN 10.7 > IF 1 ELSE 0 THEN
+\     24:-17:-20 MEAN 10.7 > IF 1 ELSE 0 THEN
+\     25:-17:-20 MEAN 10.7 > IF 1 ELSE 0 THEN
     
-\     21:-5:-8 MEAN 10.7 < IF 1 ELSE 0 THEN
-\     22:-5:-8 MEAN 10.7 < IF 1 ELSE 0 THEN
-\     23:-5:-8 MEAN 10.7 < IF 1 ELSE 0 THEN
-\     24:-5:-8 MEAN 10.7 < IF 1 ELSE 0 THEN
-\     25:-5:-8 MEAN 10.7 < IF 1 ELSE 0 THEN
-\ 
-\     21:-9:-12 MEAN 10.7 < IF 1 ELSE 0 THEN
-\     22:-9:-12 MEAN 10.7 < IF 1 ELSE 0 THEN
-\     23:-9:-12 MEAN 10.7 < IF 1 ELSE 0 THEN
-\     24:-9:-12 MEAN 10.7 < IF 1 ELSE 0 THEN
-\     25:-9:-12 MEAN 10.7 < IF 1 ELSE 0 THEN
-
-\     21:-8:-28 MEAN
-\     22:-8:-28 MEAN
-\     23:-8:-28 MEAN
-\     24:-8:-28 MEAN
-\     25:-8:-28 MEAN
+    \ ========== dengue-sg-log ==========
+    B:-1:-6
+\     B:-1:-6 MEAN B:-1:-6 SD 5 get-gradient B:-1:-6 MEAN B:-1:-3 MEAN -. 0 > IF 1 ELSE -1 THEN *.
 
     \ ========== rainfall-max ==========
 \     26:0:-8 MEAN
@@ -221,24 +187,39 @@
 \     38:0:-8 MEAN
 \     39:0:-8 MEAN
 \     40:0:-8 MEAN
-\     36:-8:-28 MEAN
-\     37:-8:-28 MEAN
-\     38:-8:-28 MEAN
-\     39:-8:-28 MEAN
-\     40:-8:-28 MEAN
-
-\     36:-13:-16 MEAN
-\     37:-13:-16 MEAN
-\     38:-13:-16 MEAN
-\     39:-13:-16 MEAN
-\     40:-13:-16 MEAN
     
-\     36:-17:-20 MEAN
-\     37:-17:-20 MEAN
-\     38:-17:-20 MEAN
-\     39:-17:-20 MEAN
-\     40:-17:-20 MEAN
-;
+    36:-1:-4 MEAN
+    37:-1:-4 MEAN
+    38:-1:-4 MEAN
+    39:-1:-4 MEAN
+    40:-1:-4 MEAN
 
+    36:-5:-8 MEAN
+    37:-5:-8 MEAN
+    38:-5:-8 MEAN
+    39:-5:-8 MEAN
+    40:-5:-8 MEAN
+
+    36:-9:-12 MEAN
+    37:-9:-12 MEAN
+    38:-9:-12 MEAN
+    39:-9:-12 MEAN
+    40:-9:-12 MEAN
+    
+    \ ========== relative-humidity-avg ==========
+\     42:-1:-4
+\     42:-5:-8
+
+    \ ========== absolute-humidity-avg ==========
+    43:-1:-4
+    43:-5:-8
+\     42:-1:-4 MAX
+\     42:-5:-8 MAX
+\     42:-9:-12 MAX
+\     42:-13:-16 MAX
+
+\     42:-17:-20 MEAN
+\     42:-17:-20 MAX
+;
 
 

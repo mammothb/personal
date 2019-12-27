@@ -45,7 +45,7 @@ use timeseries
 
 : network ( l -- l )
     named temps 
-        triple-layer-network
+        quad-layer-network
         1 innerproduct
     end-named
 ; 
@@ -87,4 +87,11 @@ use timeseries
   %s max_iter ${iters}
   %s type "${solver-type}"
   %s early_stop 25 20 
+  %s base_lr 0.0003
 ; 
+
+
+
+
+
+
