@@ -41,7 +41,5 @@ network: network.m
 \ <model name> <config#> deploy-model
 \ Eg. "my-model" 1 deploy-model
 : deploy-model 
-  "p001-nn" best-config@ deploy-model
+  "convergence-nn" best-config@ deploy-model
 ;
-
-

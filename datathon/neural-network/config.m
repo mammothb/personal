@@ -6,12 +6,12 @@
 \
 
 \ Sizes for the Neural Network
-{{ 64 128 }} := nn-size
+{{ 128 256 }} := nn-size
 
 \ The number of inputs 
 \ You definitely need to amend this depending on 
 \ the number of features you use.
-{{ 81 85 }} := input-size
+{{ 75 }} := input-size
 \ {{ 77 78 79 80 81 }} := input-size
 \ {{ 77 79 81 83 85 87 }} := input-size
 
@@ -22,8 +22,4 @@
 \ Adam is highly optimized for gradient descent. (default)
 \ SGD is Stochasic Gradient Descent. (can be better in some cases) 
 "Adam" := solver-type
-
-20 repeats
-
-
-
+50 repeats

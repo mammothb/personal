@@ -43,6 +43,16 @@ use timeseries
     }} perceptron
 ; 
 
+: penta-layer-network ( l -- l )
+    {{
+        ${nn-size}
+        ${nn-size} shrink
+        ${nn-size} shrink shrink
+        ${nn-size} shrink shrink shrink
+        ${nn-size} shrink shrink shrink shrink
+    }} perceptron
+; 
+
 : network ( l -- l )
     named temps 
         quad-layer-network
@@ -56,14 +66,10 @@ use timeseries
     input-indices := xs
     3 := y0
     1 := y
-\     6 := y0
-\     4 := y
   "dengue/test/nn" csv test
     input-indices := xs
     3 := y0
     2 := y
-\     6 := y0
-\     5 := y
     
    network '$y0 + 
    '$y euclidean >> loss
@@ -86,8 +92,16 @@ use timeseries
   %s solver_mode "CPU"
   %s max_iter ${iters}
   %s type "${solver-type}"
-  %s early_stop 25 20 
+  %s early_stop 25 20
   %s base_lr 0.0003
+  
+\   %s early_stop 100 80
+\   %s base_lr 0.001
+  %s gamma 0.25
+\   %s stepsize 100000
+\   %s momentum 0.9
+  %s momentum2 0.999
+  %s delta 0.00000001
 ; 
 
 
