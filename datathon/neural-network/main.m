@@ -38,8 +38,19 @@ network: network.m
     n 104 plot-lags cr 
 ; 
 
+\ This will will retrieve the predictions for an evaluated
+\ configuration and save is as "predictions.csv"
+\ Syntax for eval>csv:
+\ <config#> <eval#> "filename" EVAL<CSV
+\ <eval#> is in eval-config.m. 1 = train data , 2 = test data. 
+\ this is set to test data = 2. 
+: save-predictions
+    best-config@ 1 "train-predictions.csv" eval>csv
+    best-config@ 2 "test-predictions.csv" eval>csv
+; 
+
 \ <model name> <config#> deploy-model
 \ Eg. "my-model" 1 deploy-model
 : deploy-model 
   "convergence-nn" best-config@ deploy-model
-;
+; 
