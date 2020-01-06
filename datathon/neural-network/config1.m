@@ -6,16 +6,18 @@
 \
 
 \ Sizes for the Neural Network
-{{ 512 }} := nn-size
+\ {{ 512 }} := nn-size
+{{ 128 }} := nn-size
 
-{{ 0.001 }} := lr
-{{ 0.25 0.5 }} := gamma-value
+\ {{ 0.001 }} := lr
+\ {{ 0.25 0.5 }} := gamma-value
 
 \ The number of inputs 
 \ You definitely need to amend this depending on 
 \ the number of features you use.
 \ {{ 77 }} := input-size
 \ {{ 199 }} := input-size
+\ {{ 203 207 211 215 219 223 }} := input-size
 {{ 203 }} := input-size
 
 \ Max iterations for solver. 
@@ -25,4 +27,4 @@
 \ Adam is highly optimized for gradient descent. (default)
 \ SGD is Stochasic Gradient Descent. (can be better in some cases) 
 "Adam" := solver-type
-25 repeats
+100 repeats

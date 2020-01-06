@@ -9,11 +9,11 @@ use timeseries
 
 : perceptron ( n -- layer )
     innerproduct relu
-;
+; 
 
 : perceptron ( l seq -- layer )
     ['] perceptron reduce
-;
+; 
 
 : shrink ( n -- n )
     2 * 3 /
@@ -54,19 +54,9 @@ use timeseries
     }} perceptron
 ; 
 
-: bottleneck-layer-network ( l -- l )
-    {{
-        ${nn-size}
-        ${nn-size} shrink
-        ${nn-size} shrink shrink
-        ${nn-size} shrink
-        ${nn-size}
-    }} perceptron
-; 
-
 : network ( l -- l )
     named temps 
-        triple-layer-network
+        quad-layer-network
         1 innerproduct
     end-named
 ; 
@@ -106,12 +96,10 @@ use timeseries
   %s early_stop 25 20
 \   %s base_lr 0.0003
   
-\   %s early_stop 100 80
-  %s base_lr ${lr}
-\   %s base_lr 0.001
-\   %s gamma 0.125
-  %s gamma ${gamma-value}
-\   %s momentum 0.9
+\ \   %s early_stop 100 80
+\ \   %s base_lr 0.001
+  %s gamma 0.4
+
   %s momentum2 0.999
   %s delta 0.00000001
 ;
