@@ -1,0 +1,216 @@
+: map_sum ( seq -- n )
+    0 SWAP ['] +. REDUCE
+; 
+
+: ewm ( seq n -- n ) { xs s }
+    2 s 1 +. /. { alpha }
+    0 1 ... s TAKE [: alpha SWAP ^ ;] MAP { top }
+    top xs ['] *. ZIPWITH map_sum top map_sum /.
+; 
+
+: get-gradient ( seq n n -- n ) { xs xmean n }
+    xs [: xmean -. ;] MAP 0 1 ... n TAKE [: n 2 /. -. ;] MAP ['] *. ZIPWITH SUM
+    xs [: xmean -. ;] MAP xs [: xmean -. ;] MAP ['] *. ZIPWITH SUM /.
+; 
+
+: norm_temperature ( seq -- seq )
+    [: 25 /. ;] MAP
+; 
+
+: norm_rainfall ( seq -- seq )
+    [: 64 /. ;] MAP
+; 
+
+: norm_weekly ( seq -- seq )
+    [: 7 /. ;] MAP
+; 
+
+: log_trans ( seq -- seq )
+    [: 1 +. LN ;] MAP
+; 
+
+: transform
+    A:8:7 2 ewm   \ dengue-sg-log
+\     A:8   \ dengue-sg-log
+\     A:8:1 7 ewm   \ dengue-sg-log
+    A:8           \ 8-week ahead forecast.
+    A:0:-1 2 ewm  \ dengue-sg-log
+\     A:0  \ dengue-sg-log
+\     A:0:-8 MEAN           \ dengue-sg-log
+    
+    \ ========== dengue-sg-log ========== 8
+\     A:0:-11 12 ewm
+    A:0:-10 11 ewm
+    A:0:-3 A:0:-3 MEAN 4 get-gradient
+    
+    \ ========== population-sg-log ========== 1
+    2:-30
+\     2:0
+    
+    \ ========== hw-season ==========
+    41:8:1
+\     41:0:-11 12 ewm
+    41:0
+    
+\     41:-1:-8
+    
+\     A:-1:-8 41:-1:-8 ['] *. ZIPWITH
+
+    \ ========== temperature-avg ========== 16
+\ \     3:0:-3 norm_temperature MEAN
+\ \     3:-4:-7 norm_temperature MEAN
+\ \     3:-8:-11 norm_temperature MEAN
+\     3:-12:-19 norm_temperature
+\     4:0:-30 norm_temperature
+    4:0 norm_temperature
+    4:-11:-18 norm_temperature
+    4:-27:-30 norm_temperature
+\     4:-12:-16 norm_temperature
+\     5:-14:-17 norm_temperature
+\ \     4:0:-1 norm_temperature
+\ \     6:0:-4 norm_weekly
+\ \     8:-13:-17 [: DUP 0 < IF DROP 0 THEN ;] MAP
+\ 
+\     \ ========== temperature-avg flags ========== 1/4/3
+\ \     3:-17:-20 [: 27.8 > IF 1 ELSE 0 THEN ;] MAP
+\ \     3:-8:-11 [: 27.8 > IF 1 ELSE 0 THEN ;] MAP
+\ 
+\     \ ========== abs-humidity-avg ========== 4/21
+\ \     40:0:-7 [: 100 /. ;] MAP
+\     40:0 [: 100 /. ;] MAP
+\     40:-7:-14 [: 100 /. ;] MAP
+\ 
+\     \ ========== rainfall-avg ========== 25/20
+\     9:0:-3 log_trans
+\     10:0:-3 log_trans
+\ \     11:0:-3 log_trans
+\     12:0:-3 log_trans
+\     13:0:-2 log_trans
+\     
+    9:0:-3 log_trans
+    10:0:-3 log_trans
+    11:0:-3 log_trans
+    12:0:-3 log_trans
+    13:0:-3 log_trans
+    
+    9:-9:-15 log_trans
+    10:-9:-15 log_trans
+    11:-9:-15 log_trans
+    12:-9:-15 log_trans
+    13:-9:-15 log_trans
+    
+\     18:-10:-11 log_trans
+\     19:-10:-11 log_trans
+    
+\     9:-9:-13 log_trans
+\     10:-9:-13 log_trans
+\     11:-9:-13 log_trans
+\     12:-9:-13 log_trans
+\     13:-9:-13 log_trans
+
+\     9:0:-3 log_trans MEAN
+\     10:0:-3 log_trans MEAN
+\     11:0:-3 log_trans MEAN
+\     12:0:-3 log_trans MEAN
+\     13:0:-3 log_trans MEAN
+\ \ 
+\ \     9:-4:-7 log_trans MEAN
+\ \     10:-4:-7 log_trans MEAN
+\ \     11:-4:-7 log_trans MEAN
+\ \     12:-4:-7 log_trans MEAN
+\ \     13:-4:-7 log_trans MEAN
+\ \ 
+\ \     9:-8:-11 log_trans MEAN
+\ \     10:-8:-11 log_trans MEAN
+\ \     11:-8:-11 log_trans MEAN
+\ \     12:-8:-11 log_trans MEAN
+\ \     13:-8:-11 log_trans MEAN
+\ 
+    \ ========== rainfall-rainy-days ========== 25/5/100
+\     27:0:-2 norm_weekly
+\     28:0 norm_weekly
+\ \     29:0:-4 norm_weekly
+\     30:0:-3 norm_weekly
+\     31:0 norm_weekly
+ 
+    27:-7 norm_weekly
+    28:-7 norm_weekly
+    29:-7 norm_weekly
+    30:-7 norm_weekly
+    31:-7 norm_weekly
+    
+    27:-8 norm_weekly
+    28:-8 norm_weekly
+    29:-8 norm_weekly
+    30:-8 norm_weekly
+    31:-8 norm_weekly
+    
+    27:-9 norm_weekly
+    28:-9 norm_weekly
+    29:-9 norm_weekly
+    30:-9 norm_weekly
+    31:-9 norm_weekly
+    
+    40:0 [: 100 /. ;] MAP
+    40:-7:-9 [: 100 /. ;] MAP
+    
+    36:-21:-22 norm_weekly
+    37:-21:-22 norm_weekly
+    34:-21:-22 norm_weekly
+    33:-21:-22 norm_weekly
+\     35:-21:-22 norm_weekly
+    
+    
+
+\ \     32:0:-8 [: 6 > -> 1 | OTHERWISE 0 |. ;] MAP
+\     \ ========== rainfall-consecutive-days ========== 25/5/100
+\ \     33:-1:-4 norm_weekly MEAN
+\ \     34:-1:-4 norm_weekly MEAN
+\ \     35:-1:-4 norm_weekly MEAN
+\ \     36:-1:-4 norm_weekly MEAN
+\ \     37:-1:-4 norm_weekly MEAN
+\ 
+\ \     33:0:-3 norm_weekly MAX
+\ \     34:0:-3 norm_weekly MAX
+\ \     35:0:-3 norm_weekly MAX
+\ \     36:0:-3 norm_weekly MAX
+\ \     37:0:-3 norm_weekly MAX
+\ \     
+\ \     33:-4:-7 norm_weekly MAX
+\ \     34:-4:-7 norm_weekly MAX
+\ \     35:-4:-7 norm_weekly MAX
+\ \     36:-4:-7 norm_weekly MAX
+\ \     37:-4:-7 norm_weekly MAX
+\ 
+\ \     4:0:-3 norm_temperature MEAN
+\ \     4:-4:-7 norm_temperature MEAN
+\ \     4:-8:-11 norm_temperature MEAN
+\ \     4:0:-1 norm_temperature MAX
+\ \     4:-2:-3 norm_temperature MAX
+\ \     4:-4:-5 norm_temperature MAX
+\ \     4:-6:-7 norm_temperature MAX
+\ \     4:-8:-9 norm_temperature MAX
+\ \     4:-10:-11 norm_temperature MAX
+\ 
+\     \ ========== temperature-sg-max/min-diff ========== 25/5/100
+\ \     8:0:-7 0.01 ABOVE LENGTH 8 /.
+\ \     7:0:-7 0.01 ABOVE LENGTH 8 /.
+\     
+\ \     7:0:-3 [: 0.01 > IF 1 ELSE 0 THEN ;] MAP 4:0:-3 ['] *. ZIPWITH norm_temperature MAX
+\ \     7:-4:-7 [: 0.01 > IF 1 ELSE 0 THEN ;] MAP 4:-4:-7 ['] *. ZIPWITH norm_temperature MAX
+\ \     7:-8:-11 [: 0.01 > IF 1 ELSE 0 THEN ;] MAP 4:-8:-11 ['] *. ZIPWITH norm_temperature MAX
+\ \     
+\ \     8:0:-3 [: 0.01 > IF 1 ELSE 0 THEN ;] MAP 5:0:-3 ['] *. ZIPWITH norm_temperature MAX
+\ \     8:-4:-7 [: 0.01 > IF 1 ELSE 0 THEN ;] MAP 5:-4:-7 ['] *. ZIPWITH norm_temperature MAX
+\ \     8:-8:-11 [: 0.01 > IF 1 ELSE 0 THEN ;] MAP 5:-8:-11 ['] *. ZIPWITH norm_temperature MAX
+\ \     40:-8:-11 [: 100 /. ;] MAP
+\ \     8:0:-2 [: DUP 0 < IF DROP 0 ELSE ;] MAP
+\ \     7:-27:-30 [: DUP 0.01 < IF DROP 0 ELSE ;] MAP
+\ \     8:-27:-30 [: DUP 0.01 < IF DROP 0 ELSE ;] MAP
+\     8:0:-3 5:0:-3 ['] *. ZIPWITH
+;
+
+
+
+
+
